@@ -1,6 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CurrentWeatherComponent } from './current-weather.component';
+import {CurrentWeatherComponent} from './current-weather.component';
+import {WeatherService} from '../weather/weather.service';
+import {WeatherFakeService} from '../weather/weather-fake.service';
 
 describe('CurrentWeatherComponent', () => {
   let component: CurrentWeatherComponent;
@@ -8,9 +10,13 @@ describe('CurrentWeatherComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CurrentWeatherComponent ]
+      declarations: [CurrentWeatherComponent],
+      providers: [{
+        provide: WeatherService,
+        useClass: WeatherFakeService
+      }]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
